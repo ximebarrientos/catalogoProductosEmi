@@ -14,9 +14,9 @@ function App() {
       <main>
         {/* <Error404></Error404> */}
         {/* <Inicio></Inicio> */}
-        {/* <Administrador></Administrador> */}
+        <Administrador></Administrador>
         {/* <DetalleProducto></DetalleProducto> */}
-        <FormularioProducto></FormularioProducto>
+        {/* <FormularioProducto></FormularioProducto> */}
       </main>
       <Footer></Footer>
     </>
