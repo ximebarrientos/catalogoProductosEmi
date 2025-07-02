@@ -1,12 +1,12 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import logo from "../../assets/coffee_logo.png";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 
 const Menu = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to={'/'}>
           <img
             src={logo}
             alt="logo Rolling Coffee"
@@ -19,7 +19,7 @@ const Menu = () => {
           <Nav className="ms-auto">
             <NavLink className='nav-link' to={'/'}>Inicio</NavLink>
             <NavLink className='nav-link' to={'/administrador'}>Administrador</NavLink>
-            <NavLink className="nav-link" to={'/holamundo'} >
+            <NavLink className="nav-link" to={'/login'} >
               Login
             </NavLink>
           </Nav>

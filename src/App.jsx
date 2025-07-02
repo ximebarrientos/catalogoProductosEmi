@@ -7,6 +7,7 @@ import CardProducto from "./components/pages/producto/CardProducto";
 import FormularioProducto from "./components/pages/producto/FormularioProducto";
 import Footer from "./components/shared/Footer";
 import Menu from "./components/shared/Menu";
+import Login from "./components/pages/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Inicio></Inicio>}></Route>
             <Route path="/detalle" element={<DetalleProducto/>}></Route>
+            <Route path="/login" element={<Login></Login>}></Route>
             <Route path="/administrador" element={<Administrador></Administrador>}></Route>
             <Route path="/administrador/crear" element={<FormularioProducto></FormularioProducto>}></Route>
             <Route path="/administrador/editar" element={<FormularioProducto></FormularioProducto>}></Route>
