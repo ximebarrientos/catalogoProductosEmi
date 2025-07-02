@@ -1,19 +1,25 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({setUsuarioLogueado}) => {
     const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm()
+  const navegacion = useNavigate()
 
   const loginUser = (user)=>{
-  console.log(user)
-  console.log(import.meta.env.VITE_API_EMAIL)   
-  console.log(import.meta.env.VITE_API_PASSWORD)   
-
+    if(user.email === import.meta.env.VITE_API_EMAIL && user.password === import.meta.env.VITE_API_PASSWORD){
+       setUsuarioLogueado(true) //actualizar el state del usuario logueado
+       sessionStorage.setItem('userKey', true) //para mantener la sesion del admin, guardar en sesion storage
+        //redireccionar
+        navegacion('/administrador')    
+    }else{
+        console.log('Correo o contraseña incorrecta')
+    }
   }
 
   return (
