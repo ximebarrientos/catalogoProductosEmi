@@ -8,13 +8,18 @@ import FormularioProducto from "./components/pages/producto/FormularioProducto";
 import Footer from "./components/shared/Footer";
 import Menu from "./components/shared/Menu";
 import Login from "./components/pages/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProtectorRutas from "./components/routes/ProtectorRutas";
 
 function App() {
 const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('userKey')) || false  
+const productosLocalStorage = JSON.parse(localStorage.getItem('productos-cafe')) || []
 const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
-const [productos, setProductos] = useState([])
+const [productos, setProductos] = useState(productosLocalStorage)
+
+useEffect(()=>{
+  localStorage.setItem('productos-cafe', JSON.stringify(productos))
+},[productos])
 
 const cargarProductos = (productoNuevo)=>{
   setProductos([...productos,productoNuevo])
@@ -27,7 +32,7 @@ const cargarProductos = (productoNuevo)=>{
         <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
         <main>
           <Routes>
-            <Route path="/" element={<Inicio></Inicio>}></Route>
+            <Route path="/" element={<Inicio productos={productos}></Inicio>}></Route>
             <Route path="/detalle" element={<DetalleProducto/>}></Route>
             <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
             <Route path="/administrador" element={
