@@ -14,6 +14,12 @@ import ProtectorRutas from "./components/routes/ProtectorRutas";
 function App() {
 const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('userKey')) || false  
 const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
+const [productos, setProductos] = useState([])
+
+const cargarProductos = (productoNuevo)=>{
+  setProductos([...productos,productoNuevo])
+  return true;
+}
 
   return (
     <>
@@ -28,7 +34,7 @@ const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
               <ProtectorRutas usuarioLogueado={usuarioLogueado}>
               </ProtectorRutas>
               }>
-                <Route index element={<Administrador></Administrador>}></Route>
+                <Route index element={<Administrador cargarProductos={cargarProductos}></Administrador>}></Route>
                 <Route path="crear" element={<FormularioProducto></FormularioProducto>}></Route>
                 <Route path="editar" element={<FormularioProducto></FormularioProducto>}></Route>
             </Route>
