@@ -1,10 +1,17 @@
 import { Form, Button } from "react-bootstrap";
+import {useForm} from 'react-hook-form'
+const FormularioProducto = ({titulo}) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm()
 
-const FormularioProducto = () => {
- 
+  
   return (
     <section className="container mainSection">
-      <h1 className="display-4 mt-5">Nuevo producto</h1>
+      <h1 className="display-4 mt-5">{titulo}</h1>
       <hr />
       <Form className="my-4" >
         <Form.Group className="mb-3" controlId="formNombreProdcuto">

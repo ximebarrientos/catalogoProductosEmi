@@ -40,8 +40,8 @@ const cargarProductos = (productoNuevo)=>{
               </ProtectorRutas>
               }>
                 <Route index element={<Administrador setProductos={setProductos} productos={productos}></Administrador>}></Route>
-                <Route path="crear" element={<FormularioProducto></FormularioProducto>}></Route>
-                <Route path="editar" element={<FormularioProducto></FormularioProducto>}></Route>
+                <Route path="crear" element={<FormularioProducto titulo={'Crear producto'}></FormularioProducto>}></Route>
+                <Route path="editar" element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}></Route>
             </Route>
             <Route path="*" element={<Error404></Error404> }></Route>
           </Routes>
