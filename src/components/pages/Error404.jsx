@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import error from "../../assets/error404.png";
 
 const Error404 = () => {
@@ -5,7 +6,7 @@ const Error404 = () => {
     <section className="mainSection text-center">
       <img src={error} alt="error 404" />
       <div>
-        <button className="btn btn-success" >Volver al inicio</button>
+        <Link className="btn btn-success" to={'/'}>Volver al inicio</Link>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router";
 
 const CardProducto = () => {
   return (
@@ -20,9 +21,9 @@ const CardProducto = () => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="text-end">
-          <Button variant="success" className="me-2">
+          <Link className="me-2 btn btn-success" to={'/detalle'}>
             Ver más
-          </Button>
+          </Link>
         </Card.Footer>
       </Card>
     </Col>
