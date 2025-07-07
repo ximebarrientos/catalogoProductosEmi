@@ -3,24 +3,29 @@ import ItemProducto from "./producto/ItemProducto";
 import { Link } from "react-router";
 import { productosPrueba } from "../../data/productosPrueba";
 
-const Administrador = ({cargarProductos}) => {
+const Administrador = ({ setProductos, productos }) => {
+  console.log(productosPrueba);
 
-  const cargarProductosPrueba = ()=>{
+  const cargarProductosPrueba = () => {
     //traer datos de prueba y cargarlo en el state
-    cargarProductos(productosPrueba)
-  }
+    setProductos(productosPrueba);
+  };
 
   return (
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
         <h1 className="display-4 ">Productos disponibles</h1>
         <div>
-        <Link className="btn btn-primary me-2" to={'/administrador/crear'}>
-          <i className="bi bi-file-earmark-plus"></i>
-        </Link>
-        <Button variant="info" className="text-light" onClick={cargarProductosPrueba}>
-          <i className="bi bi-database-fill-up"></i>
-        </Button>
+          <Link className="btn btn-primary me-2" to={"/administrador/crear"}>
+            <i className="bi bi-file-earmark-plus"></i>
+          </Link>
+          <Button
+            variant="info"
+            className="text-light"
+            onClick={cargarProductosPrueba}
+          >
+            <i className="bi bi-database-fill-up"></i>
+          </Button>
         </div>
       </div>
       <hr />
@@ -36,7 +41,9 @@ const Administrador = ({cargarProductos}) => {
           </tr>
         </thead>
         <tbody>
-          <ItemProducto></ItemProducto>
+          {
+            productos.map((producto, indice)=> <ItemProducto key={producto.id} producto={producto} fila={indice+1}></ItemProducto>)
+          }
         </tbody>
       </Table>
     </section>

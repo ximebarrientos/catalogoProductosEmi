@@ -34,7 +34,7 @@ const cargarProductos = (productoNuevo)=>{
               <ProtectorRutas usuarioLogueado={usuarioLogueado}>
               </ProtectorRutas>
               }>
-                <Route index element={<Administrador cargarProductos={cargarProductos}></Administrador>}></Route>
+                <Route index element={<Administrador setProductos={setProductos} productos={productos}></Administrador>}></Route>
                 <Route path="crear" element={<FormularioProducto></FormularioProducto>}></Route>
                 <Route path="editar" element={<FormularioProducto></FormularioProducto>}></Route>
             </Route>
