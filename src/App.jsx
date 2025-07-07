@@ -9,6 +9,7 @@ import Footer from "./components/shared/Footer";
 import Menu from "./components/shared/Menu";
 import Login from "./components/pages/Login";
 import { useState } from "react";
+import ProtectorRutas from "./components/routes/ProtectorRutas";
 
 function App() {
 const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('userKey')) || false  
@@ -23,9 +24,14 @@ const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage)
             <Route path="/" element={<Inicio></Inicio>}></Route>
             <Route path="/detalle" element={<DetalleProducto/>}></Route>
             <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
-            <Route path="/administrador" element={<Administrador></Administrador>}></Route>
-            <Route path="/administrador/crear" element={<FormularioProducto></FormularioProducto>}></Route>
-            <Route path="/administrador/editar" element={<FormularioProducto></FormularioProducto>}></Route>
+            <Route path="/administrador" element={
+              <ProtectorRutas usuarioLogueado={usuarioLogueado}>
+              </ProtectorRutas>
+              }>
+                <Route index element={<Administrador></Administrador>}></Route>
+                <Route path="crear" element={<FormularioProducto></FormularioProducto>}></Route>
+                <Route path="editar" element={<FormularioProducto></FormularioProducto>}></Route>
+            </Route>
             <Route path="*" element={<Error404></Error404> }></Route>
           </Routes>
         </main>
