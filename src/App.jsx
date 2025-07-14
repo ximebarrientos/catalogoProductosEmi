@@ -30,6 +30,12 @@ const cargarProducto = (productoNuevo)=>{
   return true;
 }
 
+const borrarProducto = (idProducto)=>{
+  const productosFiltrados = productos.filter((producto)=> producto.id !== idProducto);
+  setProductos(productosFiltrados)
+  return true
+}
+
   return (
     <>
       <BrowserRouter>
@@ -43,7 +49,7 @@ const cargarProducto = (productoNuevo)=>{
               <ProtectorRutas usuarioLogueado={usuarioLogueado}>
               </ProtectorRutas>
               }>
-                <Route index element={<Administrador setProductos={setProductos} productos={productos}></Administrador>}></Route>
+                <Route index element={<Administrador setProductos={setProductos} productos={productos} borrarProducto={borrarProducto}></Administrador>}></Route>
                 <Route path="crear" element={<FormularioProducto titulo={'Crear producto'} cargarProducto={cargarProducto}></FormularioProducto>}></Route>
                 <Route path="editar" element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}></Route>
             </Route>

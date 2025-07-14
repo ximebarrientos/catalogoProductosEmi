@@ -3,7 +3,7 @@ import ItemProducto from "./producto/ItemProducto";
 import { Link } from "react-router";
 import { productosPrueba } from "../../data/productosPrueba";
 
-const Administrador = ({ setProductos, productos }) => {
+const Administrador = ({ setProductos, productos, borrarProducto }) => {
   console.log(productosPrueba);
 
   const cargarProductosPrueba = () => {
@@ -42,7 +42,7 @@ const Administrador = ({ setProductos, productos }) => {
         </thead>
         <tbody>
           {
-            productos.map((producto, indice)=> <ItemProducto key={producto.id} producto={producto} fila={indice+1}></ItemProducto>)
+            productos.map((producto, indice)=> <ItemProducto key={producto.id} producto={producto} fila={indice+1} borrarProducto={borrarProducto}></ItemProducto>)
           }
         </tbody>
       </Table>
