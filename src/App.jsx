@@ -10,6 +10,7 @@ import Menu from "./components/shared/Menu";
 import Login from "./components/pages/Login";
 import { useEffect, useState } from "react";
 import ProtectorRutas from "./components/routes/ProtectorRutas";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('userKey')) || false  
@@ -22,6 +23,9 @@ useEffect(()=>{
 },[productos])
 
 const cargarProducto = (productoNuevo)=>{
+  //el producto nuevo debe tener un id unico
+  productoNuevo.id = uuidv4();
+  //agregar el productoNuevo en el state de productos
   setProductos([...productos,productoNuevo])
   return true;
 }
@@ -40,7 +44,7 @@ const cargarProducto = (productoNuevo)=>{
               </ProtectorRutas>
               }>
                 <Route index element={<Administrador setProductos={setProductos} productos={productos}></Administrador>}></Route>
-                <Route path="crear" element={<FormularioProducto titulo={'Crear producto'}></FormularioProducto>}></Route>
+                <Route path="crear" element={<FormularioProducto titulo={'Crear producto'} cargarProducto={cargarProducto}></FormularioProducto>}></Route>
                 <Route path="editar" element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}></Route>
             </Route>
             <Route path="*" element={<Error404></Error404> }></Route>
