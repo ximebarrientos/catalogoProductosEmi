@@ -21,7 +21,7 @@ useEffect(()=>{
   localStorage.setItem('productos-cafe', JSON.stringify(productos))
 },[productos])
 
-const cargarProductos = (productoNuevo)=>{
+const cargarProducto = (productoNuevo)=>{
   setProductos([...productos,productoNuevo])
   return true;
 }
