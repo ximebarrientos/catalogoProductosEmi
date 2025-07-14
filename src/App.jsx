@@ -36,7 +36,7 @@ const borrarProducto = (idProducto)=>{
   return true
 }
 
-  return (
+return (
     <>
       <BrowserRouter>
         <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
@@ -51,7 +51,7 @@ const borrarProducto = (idProducto)=>{
               }>
                 <Route index element={<Administrador setProductos={setProductos} productos={productos} borrarProducto={borrarProducto}></Administrador>}></Route>
                 <Route path="crear" element={<FormularioProducto titulo={'Crear producto'} cargarProducto={cargarProducto}></FormularioProducto>}></Route>
-                <Route path="editar" element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}></Route>
+                <Route path="editar/:id" element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}></Route>
             </Route>
             <Route path="*" element={<Error404></Error404> }></Route>
           </Routes>
