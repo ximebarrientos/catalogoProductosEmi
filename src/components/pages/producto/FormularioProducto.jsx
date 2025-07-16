@@ -1,13 +1,23 @@
+import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router";
 import Swal from "sweetalert2";
-const FormularioProducto = ({ titulo, cargarProducto }) => {
+const FormularioProducto = ({ titulo, cargarProducto, buscarProducto }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
+  const { id } = useParams();
+
+  useEffect(()=>{
+    if(titulo === 'Editar producto'){
+      const productoEditar= buscarProducto(id)
+      console.log(productoEditar)
+    }
+  },[])
 
   const onSubmit = (producto) => {
     console.log(producto);
@@ -21,13 +31,16 @@ const FormularioProducto = ({ titulo, cargarProducto }) => {
         });
         //limpiar el formulario
         reset();
-      }else{
-         Swal.fire({
+      } else {
+        Swal.fire({
           title: "Ocurrio un error",
           text: `El producto ${producto.nombreProducto} no pudo ser creado. Intente nuevamente en unos minutos.`,
           icon: "Error",
         });
       }
+    } else {
+      //aqui agrego la logica de editar
+      console.log("aqui debo editar el producto");
     }
   };
 
@@ -64,6 +77,7 @@ const FormularioProducto = ({ titulo, cargarProducto }) => {
           <Form.Control
             type="number"
             placeholder="Ej: 50"
+            // step={0.1}
             {...register("precio", {
               required: "El precio es un valor obligatorio",
               min: {
