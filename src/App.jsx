@@ -41,6 +41,21 @@ const buscarProducto = (idProducto)=>{
   return productoBuscado
 }
 
+const modificarProducto = (idProducto, producto)=>{
+const productosEditados = productos.map((itemProducto)=>{
+  if(itemProducto.id === idProducto){
+    return {
+      ...itemProducto,
+      ...producto
+    }
+  }
+  return itemProducto
+})
+  //actualizar el state productos
+  setProductos(productosEditados)
+  return true
+}
+
 return (
     <>
       <BrowserRouter>
@@ -56,7 +71,7 @@ return (
               }>
                 <Route index element={<Administrador setProductos={setProductos} productos={productos} borrarProducto={borrarProducto}></Administrador>}></Route>
                 <Route path="crear" element={<FormularioProducto titulo={'Crear producto'} cargarProducto={cargarProducto}></FormularioProducto>}></Route>
-                <Route path="editar/:id" element={<FormularioProducto titulo={'Editar producto'} buscarProducto={buscarProducto}></FormularioProducto>}></Route>
+                <Route path="editar/:id" element={<FormularioProducto titulo={'Editar producto'} buscarProducto={buscarProducto} modificarProducto={modificarProducto}></FormularioProducto>}></Route>
             </Route>
             <Route path="*" element={<Error404></Error404> }></Route>
           </Routes>

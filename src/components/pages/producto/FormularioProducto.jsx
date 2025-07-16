@@ -1,21 +1,30 @@
 import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-const FormularioProducto = ({ titulo, cargarProducto, buscarProducto }) => {
+const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarProducto }) => {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
   const { id } = useParams();
+  const navegacion = useNavigate()
 
   useEffect(()=>{
     if(titulo === 'Editar producto'){
       const productoEditar= buscarProducto(id)
       console.log(productoEditar)
+      //dibujar los datos del producto en el formulario
+      setValue('nombreProducto', productoEditar.nombreProducto)
+      setValue('precio', productoEditar.precio)
+      setValue('imagen', productoEditar.imagen)
+      setValue('descripcion_breve', productoEditar.descripcion_breve)
+      setValue('descripcion_amplia', productoEditar.descripcion_amplia)
+      setValue('categoria', productoEditar.categoria)
     }
   },[])
 
@@ -41,6 +50,16 @@ const FormularioProducto = ({ titulo, cargarProducto, buscarProducto }) => {
     } else {
       //aqui agrego la logica de editar
       console.log("aqui debo editar el producto");
+      console.log('producto a editar', producto)
+      if(modificarProducto(id,producto)){
+         Swal.fire({
+          title: "Editaste un producto",
+          text: `El producto '${producto.nombreProducto}' fue editado correctamente`,
+          icon: "success",
+        });
+        //aqui quiero redireccionar
+        navegacion('/administrador')
+      }
     }
   };
 
