@@ -63,7 +63,7 @@ return (
         <main>
           <Routes>
             <Route path="/" element={<Inicio productos={productos}></Inicio>}></Route>
-            <Route path="/detalle" element={<DetalleProducto/>}></Route>
+            <Route path="/detalle/:id" element={<DetalleProducto buscarProducto={buscarProducto}/>}></Route>
             <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
             <Route path="/administrador" element={
               <ProtectorRutas usuarioLogueado={usuarioLogueado}>
