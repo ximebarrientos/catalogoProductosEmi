@@ -1,24 +1,56 @@
 import { Button } from "react-bootstrap";
+import { Link } from "react-router";
+import Swal from "sweetalert2";
 
-const ItemProducto = () => {
+const ItemProducto = ({ producto, fila, borrarProducto }) => {
+  const eliminarProducto = () => {
+    Swal.fire({
+      title: "¿Estas seguro de eliminar?",
+      text: "No se puede revertir este paso posteriormente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#198754",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Borrar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //invocar a la funcion que sabe borrar
+        if (borrarProducto(producto.id)) {
+          Swal.fire({
+            title: "Producto eliminado",
+            text: `El producto '${producto.nombreProducto}' fue eliminado correctamente`,
+            icon: "success",
+          });
+        } else {
+          Swal.fire({
+            title: "Ocurrio un error",
+            text: `El producto '${producto.nombreProducto}' no pudo ser eliminado`,
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
+
   return (
-   <tr>
-      <td className="text-center">1</td>
-      <td>Café americano</td>
-      <td className="text-end">$250</td>
+    <tr>
+      <td className="text-center">{fila}</td>
+      <td>{producto.nombreProducto}</td>
+      <td className="text-end">${producto.precio}</td>
       <td className="text-center">
         <img
-          src="https://images.pexels.com/photos/414555/pexels-photo-414555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src={producto.imagen}
           className="img-thumbnail"
-          alt="capuchino"
+          alt={producto.nombreProducto}
         ></img>
       </td>
-      <td>Bebida caliente</td>
+      <td>{producto.categoria}</td>
       <td className="text-center">
-        <Button variant="warning" className="me-lg-2">
+        <Link className="me-lg-2 btn btn-warning" to={`/administrador/editar/${producto.id}`}>
           <i className="bi bi-pencil-square"></i>
-        </Button>
-        <Button variant="danger">
+        </Link>
+        <Button variant="danger" onClick={eliminarProducto}>
           <i className="bi bi-trash"></i>
         </Button>
       </td>

@@ -1,14 +1,32 @@
 import { Button, Table } from "react-bootstrap";
 import ItemProducto from "./producto/ItemProducto";
+import { Link } from "react-router";
+import { productosPrueba } from "../../data/productosPrueba";
 
-const Administrador = () => {
+const Administrador = ({ setProductos, productos, borrarProducto }) => {
+  console.log(productosPrueba);
+
+  const cargarProductosPrueba = () => {
+    //traer datos de prueba y cargarlo en el state
+    setProductos(productosPrueba);
+  };
+
   return (
     <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
         <h1 className="display-4 ">Productos disponibles</h1>
-        <Button className="btn btn-primary">
-          <i className="bi bi-file-earmark-plus"></i>
-        </Button>
+        <div>
+          <Link className="btn btn-primary me-2" to={"/administrador/crear"}>
+            <i className="bi bi-file-earmark-plus"></i>
+          </Link>
+          <Button
+            variant="info"
+            className="text-light"
+            onClick={cargarProductosPrueba}
+          >
+            <i className="bi bi-database-fill-up"></i>
+          </Button>
+        </div>
       </div>
       <hr />
       <Table responsive striped bordered hover>
@@ -23,7 +41,9 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-          <ItemProducto></ItemProducto>
+          {
+            productos.map((producto, indice)=> <ItemProducto key={producto.id} producto={producto} fila={indice+1} borrarProducto={borrarProducto}></ItemProducto>)
+          }
         </tbody>
       </Table>
     </section>
