@@ -1,7 +1,14 @@
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Form } from "react-bootstrap";
 import CardProducto from "./producto/CardProducto";
+import { useState } from "react";
 
-const Inicio = ({productos}) => {
+const Inicio = ({ productos }) => {
+  const [terminoBusqueda, setTerminoBusqueda] = useState('')
+
+  const handleInputChange = (e)=>{
+    setTerminoBusqueda(e.target.value)
+  }
+
   return (
     <section className="mainSection">
       <img
@@ -12,11 +19,16 @@ const Inicio = ({productos}) => {
       <Container className="mt-5">
         <h1 className="display-4">Nuestros Productos</h1>
         <hr />
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Buscar un producto</Form.Label>
+            <Form.Control type="text" placeholder="Ingresa el nombre del producto" onChange={handleInputChange} value={terminoBusqueda}/>
+          </Form.Group>
+        </Form>
         <Row>
-          {
-            productos.map((producto)=> <CardProducto key={producto.id} producto={producto}></CardProducto>)
-          }
-         
+          {productos.map((producto) => (
+            <CardProducto key={producto.id} producto={producto}></CardProducto>
+          ))}
         </Row>
       </Container>
     </section>
