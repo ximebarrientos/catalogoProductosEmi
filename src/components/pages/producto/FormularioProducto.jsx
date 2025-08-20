@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-import { crearProductos } from "../../../helpers/queries";
+import { crearProducto } from "../../../helpers/queries";
 const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarProducto }) => {
   const {
     register,
@@ -32,7 +32,7 @@ const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarP
   const onSubmit = async (producto) => {
     //si estoy creando
     if (titulo === "Crear producto") {
-      const respuesta = await crearProductos(producto)
+      const respuesta = await crearProducto(producto)
       if(respuesta.status === 201) {
         Swal.fire({
           title: "Creaste un producto",

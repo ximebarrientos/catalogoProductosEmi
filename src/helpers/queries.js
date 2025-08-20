@@ -11,9 +11,8 @@ export const listarProductos = async () => {
   }
 };
 //post
-export const crearProductos = async (productoNuevo) => {
+export const crearProducto = async (productoNuevo) => {
   try {
-    console.log(productoNuevo)
     const respuesta = await fetch(urlProductos,{
         method: "POST",
         headers: {
@@ -21,7 +20,19 @@ export const crearProductos = async (productoNuevo) => {
         },
         body: JSON.stringify(productoNuevo)
     });
-    console.log(respuesta)
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+//delete
+export const borrarProducto = async (id) => {
+  try {
+    const respuesta = await fetch(urlProductos+`/${id}`,{
+        method: "DELETE",
+    });
     return respuesta;
   } catch (error) {
     console.error(error);
