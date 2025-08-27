@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import { crearProducto, editarProducto, obtenerProducto } from "../../../helpers/queries";
+
 const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarProducto }) => {
   const {
     register,
@@ -67,13 +68,6 @@ const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarP
         navegacion('/administrador')
       }
     }
-  };
-
-
-
-
-
-
 
   return (
     <section className="container mainSection">
@@ -218,5 +212,5 @@ const FormularioProducto = ({ titulo, cargarProducto, buscarProducto, modificarP
       </Form>
     </section>
   );
-
+}
 export default FormularioProducto;
