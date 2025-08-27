@@ -50,3 +50,20 @@ export const borrarProducto = async (id) => {
     return null;
   }
 };
+
+//editar un producto
+export const editarProducto = async (productoEditado,id) => {
+  try {
+    const respuesta = await fetch(urlProductos+`/${id}`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productoNuevo)
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
