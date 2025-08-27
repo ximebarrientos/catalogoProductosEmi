@@ -59,7 +59,7 @@ export const editarProducto = async (productoEditado,id) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(productoNuevo)
+        body: JSON.stringify(productoEditado)
     });
     return respuesta;
   } catch (error) {
