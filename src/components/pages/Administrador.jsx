@@ -38,7 +38,7 @@ const obtenerProductos = async () => {
           </Link>
           <Button
             variant="info"
-            className="text-light disebled"
+            className="text-light disabled"
             onClick={cargarProductosPrueba}
           >
             <i className="bi bi-database-fill-up"></i>

@@ -30,7 +30,7 @@ const FormularioProducto = ({
       cargarDatos();
     }
   }, []);
-
+//hago una fn porque no puedo usar el async directamente en el useEffect
   const cargarDatos = async () => {
     const respuesta = await obtenerProducto(id);
     if (respuesta.status === 200) {

@@ -19,7 +19,7 @@ const ItemProducto = ({ producto, fila, setListaProductos }) => {
         //invocar a la funcion que sabe borrar
         const respuesta=await borrarProducto(producto._id)
         if(respuesta.status===200){
-          //todo: actualizar la tabla de productos
+          // actualizar la tabla de productos
           const productosAPI=await listarProductos()
           if(productosAPI.status===200){
             const datos =await productosAPI.json()
